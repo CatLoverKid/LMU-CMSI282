@@ -9,7 +9,7 @@ class formRdmNum{
     if(args[0] == null || args[1] == null){
       System.out.println("Expected input of type integer and String");
     }else{
-      System.out.println("Sending " + args[0] + " random integers to: " + args[1] + ".numbers");
+      //System.out.println("Sending " + args[0] + " random integers to: " + args[1] + ".numbers");
     }
     try {
       File statText = new File(".\\" + args[1] + ".numbers");
