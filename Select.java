@@ -1,20 +1,15 @@
 import java.lang.*;
 import java.util.*;
 import java.io.*;
-
 class Select{
-
   static int k;
   static ArrayList<Integer> values;
   static long currentTime;
   static int finalResult;
-
-
   static private void returnBadData(){
     System.out.println("BAD DATA");
     System.exit(0);
-  }
-    
+  } 
   static private int partition(ArrayList list, int left, int right, int pivotIndex){
     int pivotValue = (int) list.get(pivotIndex);
     Collections.swap(list, pivotIndex, right);
@@ -28,7 +23,6 @@ class Select{
     Collections.swap(list, right, storeIndex);
     return storeIndex; 
   }
-
   static private int select(ArrayList list, int left, int right, int k){ 
     if(left == right){
       return (int) list.get(left);
@@ -43,11 +37,9 @@ class Select{
       return select(list, pivotIndex + 1, right, k);
     }
   }
-
     public static void main(String args[])throws Exception{
       BufferedReader systemIn = new BufferedReader(new InputStreamReader(System.in));
       values = new ArrayList<Integer>();
-
       if(args[0] != null){
         k = Integer.parseInt(args[0]) - 1; 
         if(k == 0){
@@ -56,7 +48,6 @@ class Select{
       }else{
         returnBadData();
       }
-
       String inputString = systemIn.readLine();
       while(inputString != null){
         values.add(Integer.parseInt(inputString));
@@ -64,6 +55,6 @@ class Select{
       }
       currentTime = System.currentTimeMillis();
       finalResult = select(values, 0, values.size() - 1, k);
-      System.out.println(System.currentTimeMillis() - currentTime);
+      System.out.println(finalResult);
    }
 }
