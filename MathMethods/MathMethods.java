@@ -24,10 +24,30 @@ class MathMethods{
   }
   
   public static long gcd(long m, long n){
-    return (m>n)?(m%n==0)?n:gcd(n,m%n):(n%m==0)?m:gcd(m,n%m);
+    if(m == 0 || n == 0){
+      return 0;
+    }
+    long r1 = 0;
+    long r2 = 0;
+    if(m>n){
+      r1 = n;
+      r2 = m;
+    }else{
+      r1 = m;
+      r2 = n;
+    }
+    while( r2 != 0){
+      long temp = r2;
+      r2 = r1%r2;
+      r1 = temp;
+    }
+    return r1;
   }
   
   public static long lcm(long m, long n){
+    if(m == 0 || n == 0){
+      return 0;
+    }
     return (m==0||n==0)?0:(m*n)/gcd(m,n);
   }
   
@@ -36,7 +56,11 @@ class MathMethods{
   }
   
   public static double poly(double x, double[] coeff){
-    return 1;
+    long result = 0;
+    for(int i = 0; i < coeff.length; i++){
+      result += power(x, i)*coeff[i];
+    }
+    return result;
   }
   
   public static double power(double x, int n){
