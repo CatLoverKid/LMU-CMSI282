@@ -22,25 +22,30 @@ class SumoSolver {
     
     static int amountToSpend = 0;
     static Food[] store;
-    static Food[][][] memo;
-    static Food[][] table;
+    static Food[][][] table;
+
  
     public static void main(String args[]){
         store = new Food[(args.length - 1) / 2];
         amountToSpend = Integer.parseInt(args[args.length - 1]);
         for(int i = 0; i < args.length - 1; i+= 2){store[i / 2] = new Food(Integer.parseInt(args[i]), Integer.parseInt(args[i + 1]), false);}
-        table = new Food[amountToSpend][store.length];
-        memo = new Food[amountToSpend][store.length][amountToSpend*store.length];
+        table = new Food[amountToSpend][store.length][store.length];
         
         for(int i = 0; i < amountToSpend; i++){
             for(int j = 0; j < store.length; j ++){
-                if(store[j] > i){
+                if(store[j].cost > i){
                     store[j].used = true;
-                    
                 }
             }
         }
     }
+	static void findvalue(int item, int pocketChange, int gains){
+		if(store[item].cost < pocketChange){
+			pocketChange -= store[item].cost;
+			store[item].used = true;
+			
+		}
+	}
 }
 
 
